@@ -1,0 +1,26 @@
+---
+import BlogLayout from '../layouts/BlogLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts', ({ data }) => {
+  return import.meta.env.PROD ? data.draft !== true : true;
+});
+
+const sortedPosts = posts.sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+---
+
+<BlogLayout title="首页 - 轩仔的博客" description="技术内容与个人表达并存，记录思考与感悟。">
+  <div class="space-y-8">
+    <header class="mb-10">
+      <h2 class="text-3xl font-bold text-white mb-4">最新文章</h2>
+      <div class="h-1 w-20 bg-primary-500 rounded-full"></div>
+    </header>
+
+    <div class="grid gap-6">
+      {sortedPosts.map((post) => (
+        <ArticleCard article={post} />
+      ))}
+    </div>
+  </div>
+</BlogLayout>

@@ -1,0 +1,79 @@
+---
+import BlogLayout from '../layouts/BlogLayout.astro';
+import { User, Code, Heart, Coffee } from 'lucide-react';
+---
+
+<BlogLayout title="关于我 - 轩仔的博客" description="关于博主轩仔的个人介绍。">
+  <div class="max-w-2xl">
+    <header class="mb-12">
+      <h1 class="text-3xl font-bold text-white mb-6">关于我</h1>
+      <div class="prose prose-invert prose-lg">
+        <p class="lead">
+          嗨，我是轩仔。一名热爱折腾的全栈开发者，目前专注于 Node.js 生态与前端工程化。
+        </p>
+      </div>
+    </header>
+
+    <div class="space-y-12">
+      <section>
+        <div class="flex items-center gap-3 mb-6">
+          <div class="p-2 bg-primary-500/10 rounded-lg text-primary-400">
+            <Code className="w-6 h-6" />
+          </div>
+          <h2 class="text-xl font-bold text-white">技术栈</h2>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-dark-800/50 p-4 rounded-xl border border-dark-800">
+            <h3 class="font-medium text-white mb-2">Frontend</h3>
+            <p class="text-sm text-gray-400">React, Vue, TypeScript, Tailwind CSS, Next.js</p>
+          </div>
+          <div class="bg-dark-800/50 p-4 rounded-xl border border-dark-800">
+            <h3 class="font-medium text-white mb-2">Backend</h3>
+            <p class="text-sm text-gray-400">Node.js, NestJS, PostgreSQL, Redis, Docker</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="flex items-center gap-3 mb-6">
+          <div class="p-2 bg-purple-500/10 rounded-lg text-purple-400">
+            <Heart className="w-6 h-6" />
+          </div>
+          <h2 class="text-xl font-bold text-white">博客初衷</h2>
+        </div>
+        <div class="prose prose-invert text-gray-400">
+          <p>
+            建立这个博客的初衷很简单，就是想在这个碎片化的时代，保留一块属于自己的静谧之地。
+          </p>
+          <p>
+            这里不仅会有硬核的技术干货，也会有我对生活的碎碎念。我相信技术是为了更好地生活，而写作是为了更好地思考。
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="flex items-center gap-3 mb-6">
+          <div class="p-2 bg-emerald-500/10 rounded-lg text-emerald-400">
+            <Coffee className="w-6 h-6" />
+          </div>
+          <h2 class="text-xl font-bold text-white">联系我</h2>
+        </div>
+        <div class="bg-dark-800/30 rounded-xl p-6 border border-dark-800">
+          <p class="text-gray-400 mb-4">
+            如果你对我的文章感兴趣，或者想和我探讨技术问题，欢迎通过以下方式联系我：
+          </p>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <span class="text-gray-500 w-20 inline-block">Email:</span>
+              <a href="mailto:hi@example.com" class="text-primary-400 hover:text-primary-300 transition-colors">hi@example.com</a>
+            </li>
+            <li>
+              <span class="text-gray-500 w-20 inline-block">GitHub:</span>
+              <a href="https://github.com" target="_blank" class="text-primary-400 hover:text-primary-300 transition-colors">@xuanzai</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+</BlogLayout>
