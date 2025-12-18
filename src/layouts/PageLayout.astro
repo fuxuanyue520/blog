@@ -1,0 +1,32 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import ProfileCard from '../components/widgets/ProfileCard.astro';
+import CategoryCard from '../components/widgets/CategoryCard.astro';
+import StatsCard from '../components/widgets/StatsCard.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  showBanner?: boolean;
+}
+
+const { title, description, showBanner = true } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} showBanner={showBanner}>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+    <!-- Left Sidebar -->
+    <div class="lg:col-span-3 space-y-4 opacity-0 translate-y-4 animate-fade-in-up stagger-1">
+        <div class="lg:sticky lg:top-24 space-y-4" transition:persist>
+            <ProfileCard />
+            <StatsCard />
+            <CategoryCard />
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="lg:col-span-9 opacity-0 translate-y-4 animate-fade-in-up stagger-2" transition:animate="fade">
+        <slot />
+    </div>
+  </div>
+</BaseLayout>

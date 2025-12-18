@@ -1,16 +1,20 @@
 ---
+import Navbar from '../components/Navbar.astro';
+import Banner from '../components/Banner.astro';
 import '../styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
   title: string;
   description?: string;
+  showBanner?: boolean;
 }
 
-const { title, description = "轩仔的个人博客，分享技术与思考。" } = Astro.props;
+const { title, description = "秋兰以为佩的博客 - 技术与思考", showBanner = false } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="zh-CN" class="dark">
+<html lang="zh-CN" class="scroll-smooth dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -21,8 +25,59 @@ const { title, description = "轩仔的个人博客，分享技术与思考。" 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <ViewTransitions />
   </head>
-  <body class="bg-dark-900 text-gray-200 min-h-screen selection:bg-primary-500/30">
-    <slot />
+  <body class="bg-dark-900 text-gray-200 min-h-screen flex flex-col font-sans selection:bg-primary-500/30 selection:text-primary-200 transition-colors duration-300">
+    
+    <!-- Background Elements -->
+    <div class="fixed inset-0 z-[-1] pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary-900/10 blur-[100px] animate-pulse-slow"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-secondary-900/10 blur-[100px] animate-pulse-slow" style="animation-delay: 2s"></div>
+    </div>
+
+    <Navbar />
+    
+    {showBanner && <Banner />}
+    
+    <main class={`flex-1 w-full max-w-[1400px] mx-auto px-4 py-8 ${!showBanner ? 'mt-20' : ''}`} transition:animate="fade">
+      <slot />
+    </main>
+
+    <footer class="border-t border-white/5 bg-dark-900/50 backdrop-blur-sm mt-auto transition-colors duration-300">
+      <div class="max-w-7xl mx-auto px-4 py-8 text-center text-gray-500 text-sm">
+        <p>&copy; {new Date().getFullYear()} 秋兰以为佩. All rights reserved.</p>
+        <p class="mt-2">Powered by Astro & Tailwind CSS</p>
+      </div>
+    </footer>
+    
+    <!-- Floating Action Button -->
+    <a href="#" class="fixed bottom-8 right-8 w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-primary-500/30 hover:bg-primary-600 hover:scale-110 transition-all z-40 opacity-0 translate-y-10 animate-fade-in-up" style="animation-delay: 1s">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+    </a>
+
+    <script>
+      function handleExternalLinks() {
+        const links = document.querySelectorAll('a');
+        const currentHost = window.location.hostname;
+
+        links.forEach(link => {
+          try {
+            // Check if it's a valid URL and has a hostname
+            if (link.hostname && link.hostname !== currentHost && !link.href.startsWith('mailto:')) {
+              link.setAttribute('target', '_blank');
+              link.setAttribute('rel', 'noopener noreferrer');
+            }
+          } catch (e) {
+            // Ignore invalid URLs
+          }
+        });
+      }
+
+      // Run on initial load
+      handleExternalLinks();
+
+      // Run on view transitions navigation
+      document.addEventListener('astro:page-load', handleExternalLinks);
+    </script>
   </body>
 </html>

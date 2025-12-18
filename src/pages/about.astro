@@ -1,79 +1,88 @@
 ---
-import BlogLayout from '../layouts/BlogLayout.astro';
-import { User, Code, Heart, Coffee } from 'lucide-react';
+import PageLayout from '../layouts/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
 ---
 
-<BlogLayout title="关于我 - 轩仔的博客" description="关于博主轩仔的个人介绍。">
-  <div class="max-w-2xl">
-    <header class="mb-12">
-      <h1 class="text-3xl font-bold text-white mb-6">关于我</h1>
-      <div class="prose prose-invert prose-lg">
-        <p class="lead">
-          嗨，我是轩仔。一名热爱折腾的全栈开发者，目前专注于 Node.js 生态与前端工程化。
-        </p>
-      </div>
-    </header>
+<PageLayout title="关于 - 秋兰以为佩">
+    <div class="bg-white dark:bg-dark-800 rounded-xl p-8 shadow-sm dark:shadow-lg border border-gray-100 dark:border-white/5">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 flex items-center gap-3">
+            <span class="w-1.5 h-8 bg-gradient-to-b from-primary-400 to-primary-600 rounded-full"></span>
+            见字如面
+        </h1>
 
-    <div class="space-y-12">
-      <section>
-        <div class="flex items-center gap-3 mb-6">
-          <div class="p-2 bg-primary-500/10 rounded-lg text-primary-400">
-            <Code className="w-6 h-6" />
-          </div>
-          <h2 class="text-xl font-bold text-white">技术栈</h2>
-        </div>
-        <div class="grid grid-cols-2 gap-4">
-          <div class="bg-dark-800/50 p-4 rounded-xl border border-dark-800">
-            <h3 class="font-medium text-white mb-2">Frontend</h3>
-            <p class="text-sm text-gray-400">React, Vue, TypeScript, Tailwind CSS, Next.js</p>
-          </div>
-          <div class="bg-dark-800/50 p-4 rounded-xl border border-dark-800">
-            <h3 class="font-medium text-white mb-2">Backend</h3>
-            <p class="text-sm text-gray-400">Node.js, NestJS, PostgreSQL, Redis, Docker</p>
-          </div>
-        </div>
-      </section>
+        <div class="prose dark:prose-invert max-w-none space-y-10">
+            <!-- Personal Intro -->
+            <section class="animate-fade-in-up">
+                <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-200">
+                    你好，我是<strong class="text-primary-500 mx-1">秋兰以为佩</strong>。
+                </p>
+                <div class="pl-4 border-l-4 border-gray-200 dark:border-gray-700 my-6 italic text-gray-600 dark:text-gray-400">
+                    “扈江离与辟芷兮，纫秋兰以为佩。”
+                </div>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    在这个充满算法与数据的世界里，我是一个试图寻找某种平衡的开发者。我不只是代码的搬运工，更是逻辑构建的爱好者。
+                    我相信代码如诗，好的架构应当像优美的韵律一样，简洁而有力。
+                </p>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mt-4">
+                    平时喜欢折腾各种新技术，对计算机领域保持着强烈的好奇心。闲暇之余，也爱读书、发呆，或者在城市的某个角落观察生活。
+                    这个博客，就是我的一方小天地，用来存放那些不想被时间冲刷掉的思考与足迹。
+                </p>
+            </section>
 
-      <section>
-        <div class="flex items-center gap-3 mb-6">
-          <div class="p-2 bg-purple-500/10 rounded-lg text-purple-400">
-            <Heart className="w-6 h-6" />
-          </div>
-          <h2 class="text-xl font-bold text-white">博客初衷</h2>
-        </div>
-        <div class="prose prose-invert text-gray-400">
-          <p>
-            建立这个博客的初衷很简单，就是想在这个碎片化的时代，保留一块属于自己的静谧之地。
-          </p>
-          <p>
-            这里不仅会有硬核的技术干货，也会有我对生活的碎碎念。我相信技术是为了更好地生活，而写作是为了更好地思考。
-          </p>
-        </div>
-      </section>
+            <!-- Divider -->
+            <hr class="border-gray-100 dark:border-white/5 border-dashed" />
 
-      <section>
-        <div class="flex items-center gap-3 mb-6">
-          <div class="p-2 bg-emerald-500/10 rounded-lg text-emerald-400">
-            <Coffee className="w-6 h-6" />
-          </div>
-          <h2 class="text-xl font-bold text-white">联系我</h2>
+            <!-- About Site -->
+            <section class="animate-fade-in-up" style="animation-delay: 100ms">
+                <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                    <Icon name="ri:macbook-line" class="text-primary-500" />
+                    关于本站
+                </h2>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    这里没有繁杂的广告，也没有眼花缭乱的特效（除了必要的审美坚持）。
+                    我希望它是一个纯粹的阅读空间，一个可以让你静下心来读点东西的地方。
+                </p>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mt-2">
+                    本站基于 <a href="https://astro.build" target="_blank" class="text-primary-500 hover:underline decoration-dashed underline-offset-4">Astro</a> 构建，
+                    设计上追求“如无必要，勿增实体”的极简主义，同时保留了深色模式等现代化的阅读体验。
+                    所有的文章都是我真实的踩坑记录或思考感悟，如果能对你有一点点帮助，那便是我最大的荣幸。
+                </p>
+            </section>
+
+             <!-- Contact -->
+            <section class="animate-fade-in-up" style="animation-delay: 200ms">
+                <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                    <Icon name="ri:chat-smile-2-line" class="text-primary-500" />
+                    保持联系
+                </h2>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                    世界很大，相遇是缘。如果你对我的文章感兴趣，或者有任何技术问题想要探讨，亦或是单纯想交个朋友，欢迎随时联系我。
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a href="https://github.com/fuxuanyue520" target="_blank" 
+                       class="flex items-center gap-4 p-4 rounded-xl bg-gray-50 dark:bg-dark-700/50 hover:bg-gray-100 dark:hover:bg-dark-700 border border-gray-100 dark:border-white/5 transition-all group hover:scale-[1.02] hover:shadow-md">
+                        <div class="p-3 bg-white dark:bg-dark-600 rounded-full shadow-sm group-hover:rotate-12 transition-transform duration-300">
+                            <Icon name="ri:github-fill" class="text-2xl text-gray-800 dark:text-white" />
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400 mb-0.5">GitHub</div>
+                            <div class="font-medium text-gray-900 dark:text-white group-hover:text-primary-500 transition-colors">fuxuanyue520</div>
+                        </div>
+                    </a>
+
+                    <a href="mailto:2417275843@qq.com" 
+                       class="flex items-center gap-4 p-4 rounded-xl bg-gray-50 dark:bg-dark-700/50 hover:bg-gray-100 dark:hover:bg-dark-700 border border-gray-100 dark:border-white/5 transition-all group hover:scale-[1.02] hover:shadow-md">
+                        <div class="p-3 bg-white dark:bg-dark-600 rounded-full shadow-sm group-hover:-rotate-12 transition-transform duration-300">
+                            <Icon name="ri:mail-send-fill" class="text-2xl text-primary-500" />
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400 mb-0.5">Email</div>
+                            <div class="font-medium text-gray-900 dark:text-white group-hover:text-primary-500 transition-colors">2417275843@qq.com</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
         </div>
-        <div class="bg-dark-800/30 rounded-xl p-6 border border-dark-800">
-          <p class="text-gray-400 mb-4">
-            如果你对我的文章感兴趣，或者想和我探讨技术问题，欢迎通过以下方式联系我：
-          </p>
-          <ul class="space-y-2 text-sm">
-            <li>
-              <span class="text-gray-500 w-20 inline-block">Email:</span>
-              <a href="mailto:hi@example.com" class="text-primary-400 hover:text-primary-300 transition-colors">hi@example.com</a>
-            </li>
-            <li>
-              <span class="text-gray-500 w-20 inline-block">GitHub:</span>
-              <a href="https://github.com" target="_blank" class="text-primary-400 hover:text-primary-300 transition-colors">@xuanzai</a>
-            </li>
-          </ul>
-        </div>
-      </section>
     </div>
-  </div>
-</BlogLayout>
+</PageLayout>

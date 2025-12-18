@@ -1,0 +1,47 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('posts');
+
+// Calculate real category counts
+const categoryCount = allPosts.reduce((acc, post) => {
+  const cat = post.data.category;
+  acc[cat] = (acc[cat] || 0) + 1;
+  return acc;
+}, {} as Record<string, number>);
+
+// Display Name Mapping
+const categoryMap: Record<string, string> = {
+    'tech': '技术',
+    'essay': '随笔',
+    'project': '项目'
+};
+
+const categoryIconMap: Record<string, string> = {
+    'tech': 'ri:code-box-line',
+    'essay': 'ri:quill-pen-line',
+    'project': 'ri:stack-line'
+};
+---
+
+<div class="bg-dark-800 rounded-xl p-5 shadow-lg border border-white/5 mt-4 group hover:border-primary-500/30 transition-colors">
+  <div class="flex items-center gap-2 mb-4 text-primary-400 font-bold border-l-4 border-primary-500 pl-3">
+    <Icon name="ri:folder-2-line" />
+    <span>分类</span>
+  </div>
+  
+  <div class="flex flex-col gap-2">
+    {Object.entries(categoryCount).map(([slug, count]) => (
+      <a href={`/category/${slug}`} class="flex items-center justify-between p-2 rounded-lg hover:bg-dark-700 transition-colors group/item">
+        <span class="text-gray-400 text-sm group-hover/item:text-primary-400 transition-colors flex items-center gap-2">
+            <Icon name={categoryIconMap[slug] || 'ri:folder-line'} class="text-primary-500" />
+            {categoryMap[slug] || slug}
+        </span>
+        <span class="bg-dark-700 text-primary-400 text-xs px-2 py-0.5 rounded-full group-hover/item:bg-primary-500 group-hover/item:text-white transition-colors">
+          {count}
+        </span>
+      </a>
+    ))}
+  </div>
+</div>
