@@ -24,4 +24,4 @@ coverImage: "https://images.unsplash.com/photo-1499750310159-52f0f83ad497?ixlib=
 
 ## 开源地址
 
-[GitHub Repository](https://github.com/fuxuanyue520/X_blog)
+[GitHub Repository](https://github.com/fuxuanyue520/Blog)

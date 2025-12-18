@@ -4,7 +4,7 @@
 
 ## 📸 项目预览
 
-(此处可添加项目截图)
+![alt text](image.png)
 
 ## ✨ 核心特性
 
@@ -32,7 +32,7 @@
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/fuxuanyue520/X_blog.git
+git clone https://github.com/fuxuanyue520/Blog.git
 cd X_blog
 ```
 
@@ -85,7 +85,7 @@ src/
 title: "我的第一篇文章"
 description: "文章的简短描述..."
 publishedAt: "2025-12-19T12:00:00"
-category: "tech"  # 可选值: tech, essay, project
+category: "tech" # 可选值: tech, essay, project
 tags: ["astro", "blog"] # 可选
 coverImage: "https://example.com/image.jpg" # 可选
 ---
