@@ -158,13 +158,6 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
-"css-grid-guide.md": {
-	id: "css-grid-guide.md";
-  slug: "css-grid-guide";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
 "digital-minimalism.md": {
 	id: "digital-minimalism.md";
   slug: "digital-minimalism";
@@ -217,13 +210,6 @@ declare module 'astro:content' {
 "typescript-generics.md": {
 	id: "typescript-generics.md";
   slug: "typescript-generics";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"vue3-composition-api.md": {
-	id: "vue3-composition-api.md";
-  slug: "vue3-composition-api";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">
