@@ -3,7 +3,6 @@ title: "Qiulan-Blog：我的个人博客系统"
 description: "基于 Astro + Tailwind CSS + TypeScript 打造的高性能个人博客。支持深色模式、Markdown 扩展、SEO 优化。"
 publishedAt: "2025-12-19T18:00:00"
 category: "project"
-coverImage: "../../../image.png"
 ---
 
 这是我为自己打造的个人博客系统，也是你现在看到的这个网站。
