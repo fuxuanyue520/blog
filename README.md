@@ -34,10 +34,10 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/your-username/X_blog.git
+git clone https://github.com/your-username/blog.git
 
 # 进入目录
-cd X_blog
+cd blog
 
 # 安装依赖
 pnpm install
