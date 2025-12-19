@@ -105,7 +105,7 @@ draft: false
 2. **连接 Netlify**:
    - 登录 Netlify。
    - 点击 "Add new site" -> "Import from an existing project"。
-   - 选择 GitHub，并选中你的 `X_blog` 仓库。
+   - 选择 GitHub，并选中你的 `blog` 仓库。
 3. **确认配置**:
    - Netlify 会自动读取 `netlify.toml` 配置。
    - **Build command**: `pnpm run build`
@@ -117,7 +117,7 @@ draft: false
 ## 📂 目录结构
 
 ```
-X_blog/
+blog/
 ├── public/             # 静态资源 (头像, 图片等)
 ├── src/
 │   ├── components/     # UI 组件
