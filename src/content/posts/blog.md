@@ -14,13 +14,6 @@ category: "project"
 - **语言**: TypeScript
 - **图标**: Iconify (Remix Icon)
 
-## 核心特性
-
-1.  **极致性能**: 得益于 Astro 的 Islands 架构，页面加载速度极快，Lighthouse 评分满分。
-2.  **深色模式**: 完美适配系统主题，支持平滑切换。
-3.  **响应式设计**: 兼容移动端、平板和桌面端。
-4.  **Markdown 扩展**: 支持 GitHub 卡片、提醒框等自定义组件。
-
 ## 开源地址
 
-[GitHub Repository](https://github.com/fuxuanyue520/Blog)
+[GitHub](https://github.com/fuxuanyue520/Blog)

@@ -158,16 +158,23 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
-"midnight-coding.md": {
-	id: "midnight-coding.md";
-  slug: "midnight-coding";
+"acm-graph-theory-mastery.md": {
+	id: "acm-graph-theory-mastery.md";
+  slug: "acm-graph-theory-mastery";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
-"project-x-blog.md": {
-	id: "project-x-blog.md";
-  slug: "project-x-blog";
+"blog.md": {
+	id: "blog.md";
+  slug: "blog";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"rainy-night-thoughts.md": {
+	id: "rainy-night-thoughts.md";
+  slug: "rainy-night-thoughts";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">
@@ -179,16 +186,9 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
-"travel-to-dali.md": {
-	id: "travel-to-dali.md";
-  slug: "travel-to-dali";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"typescript-generics.md": {
-	id: "typescript-generics.md";
-  slug: "typescript-generics";
+"travel-log-tibet.md": {
+	id: "travel-log-tibet.md";
+  slug: "travel-log-tibet";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">

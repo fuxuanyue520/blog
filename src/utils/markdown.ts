@@ -1,14 +1,19 @@
 import { getCollection } from "astro:content";
 
-export async function getAllArticles() {
+export async function getAllArticles(options: { ignorePinned?: boolean } = {}) {
 	const articles = await getCollection("posts");
 	return articles
 		.filter((article) => !article.data.draft)
-		.sort(
-			(a, b) =>
+		.sort((a, b) => {
+			if (!options.ignorePinned) {
+				if (a.data.isPinned && !b.data.isPinned) return -1;
+				if (!a.data.isPinned && b.data.isPinned) return 1;
+			}
+			return (
 				new Date(b.data.publishedAt).getTime() -
 				new Date(a.data.publishedAt).getTime()
-		);
+			);
+		});
 }
 
 export function getArticlesByTag(articles: any[], tag: string) {

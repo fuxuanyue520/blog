@@ -4,7 +4,7 @@ import { getAllArticles } from '../utils/markdown';
 import { formatDate } from '../utils/date';
 import { Icon } from 'astro-icon/components';
 
-const posts = await getAllArticles();
+const posts = await getAllArticles({ ignorePinned: true });
 
 // Group by year
 const postsByYear = posts.reduce((acc, post) => {
@@ -19,13 +19,15 @@ const years = Object.keys(postsByYear).map(Number).sort((a, b) => b - a);
 const categoryMap: Record<string, string> = {
     'tech': '技术',
     'essay': '随笔',
-    'project': '项目'
+    'project': '项目',
+    'other': '其他'
 };
 
 const categoryIconMap: Record<string, string> = {
     'tech': 'ri:code-box-line',
     'essay': 'ri:quill-pen-line',
-    'project': 'ri:stack-line'
+    'project': 'ri:stack-line',
+    'other': 'ri:more-fill'
 };
 ---
 

@@ -14,8 +14,9 @@ const postsCollection = defineCollection({
 			.optional()
 			.transform((str) => (str ? new Date(str) : undefined)),
 		tags: z.array(z.string()).optional().default([]),
-		category: z.enum(["tech", "essay", "project"]),
+		category: z.enum(["tech", "essay", "project", "other"]),
 		coverImage: z.string().optional(),
+		isPinned: z.boolean().optional().default(false),
 		draft: z.boolean().default(false),
 	}),
 });
