@@ -1,0 +1,78 @@
+---
+interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { headings } = Astro.props;
+
+// Filter headings to only include h2 and h3
+const toc = headings.filter((heading) => heading.depth > 1 && heading.depth < 4);
+---
+
+<nav class="toc-container max-h-[70vh] overflow-y-auto pr-2 custom-scrollbar">
+  <h2 class="text-base font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2 sticky top-0 bg-white dark:bg-dark-800 backdrop-blur-sm py-2 z-10">
+    目录
+  </h2>
+  <ul class="space-y-1 text-xs border-l border-gray-100 dark:border-white/10 pl-2">
+    {
+      toc.map((heading) => (
+        <li
+          class={`toc-item transition-colors duration-200 hover:text-primary-500 ${
+            heading.depth === 3 ? "pl-3" : ""
+          }`}
+        >
+          <a
+            href={`#${heading.slug}`}
+            class="block py-0.5 text-gray-600 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 truncate leading-relaxed"
+            title={heading.text}
+            data-slug={heading.slug}
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.3);
+    border-radius: 20px;
+  }
+  .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.5);
+  }
+</style>
+
+<script>
+  // Simple active state highlighting
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute("id");
+          if (id) {
+            document.querySelectorAll(".toc-item a").forEach((link) => {
+              link.classList.remove("text-primary-500", "font-medium");
+              if (link.getAttribute("href") === `#${id}`) {
+                link.classList.add("text-primary-500", "font-medium");
+              }
+            });
+          }
+        }
+      });
+    },
+    { rootMargin: "-100px 0px -66% 0px" }
+  );
+
+  document.querySelectorAll("h2, h3").forEach((heading) => {
+    observer.observe(heading);
+  });
+</script>

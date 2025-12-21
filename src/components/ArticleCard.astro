@@ -21,20 +21,20 @@ const categoryMap: Record<string, string> = {
 const wordCount = getWordCount(article.body);
 ---
 
-<a href={`/posts/${article.slug}`} class={`block bg-white dark:bg-dark-800 rounded-xl overflow-hidden shadow-sm dark:shadow-lg border border-gray-100 dark:border-white/5 hover:border-primary-500/30 transition-all duration-300 group flex flex-col mb-6 no-underline ${isPinned ? 'ring-2 ring-primary-500/20 dark:ring-primary-400/20' : ''}`}>
-  <div class="p-5 md:p-8">
+<a href={`/posts/${article.slug}`} class={`block bg-white dark:bg-dark-800 rounded-xl overflow-hidden shadow-sm dark:shadow-lg border border-gray-100 dark:border-white/5 hover:border-primary-500/30 transition-all duration-300 group flex flex-col mb-4 no-underline ${isPinned ? 'ring-2 ring-primary-500/20 dark:ring-primary-400/20' : ''}`}>
+  <div class="p-4">
     
     <!-- Title Area with Accent -->
-    <div class="relative pl-4 mb-3 md:mb-4">
+    <div class="relative pl-3 mb-2">
         <div class="absolute left-0 top-1.5 bottom-1.5 w-1 bg-primary-500 rounded-full"></div>
-        <h2 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-2 flex items-start gap-2">
+        <h2 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-2 flex items-start gap-2">
             {isPinned && <Icon name="ri:pushpin-fill" class="text-primary-500 mt-1 shrink-0" />}
             {title}
         </h2>
     </div>
 
     <!-- Metadata Row -->
-    <div class="flex flex-wrap items-center gap-3 md:gap-4 text-xs text-gray-500 dark:text-gray-400 mb-4 md:mb-6 font-medium">
+    <div class="flex flex-wrap items-center gap-3 text-xs text-gray-500 dark:text-gray-400 mb-2 font-medium">
         <span class="flex items-center gap-1.5">
             <Icon name="ri:calendar-line" class="text-primary-500" />
             {formatDate(publishedAt)}
@@ -50,17 +50,17 @@ const wordCount = getWordCount(article.body);
     </div>
     
     <!-- Divider -->
-    <div class="h-px w-full bg-gray-100 dark:bg-white/5 mb-4 md:mb-6"></div>
+    <div class="h-px w-full bg-gray-100 dark:bg-white/5 mb-2"></div>
 
     <!-- Description (Preview) -->
-    <p class="text-gray-600 dark:text-gray-300 text-sm md:text-base leading-relaxed mb-4 line-clamp-3 md:line-clamp-none">
+    <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-0 line-clamp-3">
         {description}
     </p>
 
      <!-- Expand Hint -->
-    <div class="flex justify-center mt-2">
-         <div class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 text-sm font-medium flex items-center gap-1 transition-transform duration-300 group-hover:translate-y-1">
-            阅读全文 <Icon name="ri:arrow-right-line" class="text-xl" />
+    <div class="flex justify-end mt-1">
+         <div class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 text-xs font-medium flex items-center gap-1 transition-transform duration-300 group-hover:translate-x-1">
+            阅读全文 <Icon name="ri:arrow-right-line" class="text-lg" />
         </div>
     </div>
   </div>

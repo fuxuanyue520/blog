@@ -30,13 +30,13 @@ const { posts } = Astro.props;
 ---
 
 <PageLayout title={`标签: ${tag} - 秋兰以为佩的博客`}>
-    <div class="mb-6 flex items-center justify-between">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+    <div class="mb-4 flex items-center justify-between">
+        <h2 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
             <Icon name="ri:price-tag-3-line" class="text-primary-500" />
             标签: <span class="text-primary-500">{tag}</span>
         </h2>
     </div>
-    <div class="space-y-6">
+    <div class="space-y-4">
         {posts.map(post => (
             <ArticleCard article={post} />
         ))}

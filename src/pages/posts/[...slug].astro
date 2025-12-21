@@ -5,6 +5,7 @@ import { formatDate } from '../../utils/date';
 import { getWordCount } from '../../utils/markdown';
 import { Icon } from 'astro-icon/components';
 import GithubCard from '../../components/GithubCard.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -15,18 +16,24 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
 const { title, description, publishedAt, coverImage } = post.data;
 
 const wordCount = getWordCount(post.body);
 ---
 
 <PageLayout title={title} description={description} showBanner={false}>
+  
+  <!-- Desktop TOC Sidebar -->
+  <div slot="sidebar" class="hidden lg:block bg-white dark:bg-dark-800 p-4 rounded-xl border border-gray-100 dark:border-white/5 shadow-sm dark:shadow-lg">
+      <TableOfContents headings={headings} />
+  </div>
+
   <div class="max-w-4xl mx-auto">
     <!-- Article Header -->
-    <div class="mb-8 text-center">
-        <h1 class="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">{title}</h1>
-        <div class="flex items-center justify-center gap-6 text-sm text-gray-400">
+    <div class="mb-4 text-center">
+        <h1 class="text-xl md:text-2xl font-bold text-white mb-2 leading-tight">{title}</h1>
+        <div class="flex items-center justify-center gap-4 text-xs text-gray-400">
             <span class="flex items-center gap-1">
                 <Icon name="ri:calendar-line" />
                 {formatDate(publishedAt)}
@@ -43,27 +50,43 @@ const wordCount = getWordCount(post.body);
     </div>
 
     {coverImage && (
-        <div class="w-full h-[200px] md:h-[400px] rounded-2xl overflow-hidden mb-10 shadow-2xl">
+        <div class="w-full h-[180px] md:h-[260px] rounded-xl overflow-hidden mb-6 shadow-2xl">
             <img src={coverImage} alt={title} class="w-full h-full object-cover" />
         </div>
     )}
 
+    <!-- Mobile TOC (Visible only on small screens) -->
+    <div class="lg:hidden mb-4 bg-dark-800/30 p-3 rounded-xl border border-white/5">
+        <details class="group">
+            <summary class="flex items-center justify-between font-bold text-white cursor-pointer list-none text-xs">
+                <span>目录</span>
+                <span class="transition-transform group-open:rotate-180">
+                    <Icon name="ri:arrow-down-s-line" />
+                </span>
+            </summary>
+            <div class="mt-2">
+                <TableOfContents headings={headings} />
+            </div>
+        </details>
+    </div>
+
     <!-- Content -->
-    <article class="prose prose-invert md:prose-lg max-w-none 
+    <article class="prose prose-invert prose-base max-w-none 
         prose-headings:text-white prose-headings:font-bold prose-headings:scroll-mt-24
+        prose-p:text-gray-300 prose-p:leading-relaxed
         prose-a:text-primary-400 prose-a:no-underline hover:prose-a:underline
         prose-blockquote:border-l-primary-500 prose-blockquote:bg-dark-800 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r-lg
         prose-code:text-primary-300 prose-code:bg-dark-800 prose-code:px-1 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
         prose-pre:bg-dark-800 prose-pre:border prose-pre:border-white/5 prose-pre:shadow-lg
         prose-img:rounded-xl prose-img:shadow-lg
-        bg-dark-800/50 p-5 md:p-12 rounded-2xl border border-white/5 backdrop-blur-sm
+        bg-dark-800/50 p-5 rounded-2xl border border-white/5 backdrop-blur-sm
     ">
         <Content components={{ GithubCard }} />
     </article>
 
     <!-- Post Footer -->
-    <div class="mt-12 pt-8 border-t border-white/10 flex justify-between items-center">
-        <button onclick="history.back()" class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors bg-transparent border-none cursor-pointer">
+    <div class="mt-8 pt-6 border-t border-white/10 flex justify-between items-center">
+        <button onclick="history.back()" class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors bg-transparent border-none cursor-pointer text-sm">
             <Icon name="ri:arrow-left-line" />
             返回
         </button>

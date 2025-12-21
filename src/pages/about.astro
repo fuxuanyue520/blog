@@ -4,26 +4,26 @@ import { Icon } from 'astro-icon/components';
 ---
 
 <PageLayout title="关于 - 秋兰以为佩">
-    <div class="bg-white dark:bg-dark-800 rounded-xl p-5 md:p-8 shadow-sm dark:shadow-lg border border-gray-100 dark:border-white/5">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8 flex items-center gap-3">
-            <span class="w-1.5 h-8 bg-gradient-to-b from-primary-400 to-primary-600 rounded-full"></span>
+    <div class="bg-white dark:bg-dark-800 rounded-xl p-4 md:p-6 shadow-sm dark:shadow-lg border border-gray-100 dark:border-white/5">
+        <h1 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+            <span class="w-1.5 h-6 bg-gradient-to-b from-primary-400 to-primary-600 rounded-full"></span>
             见字如面
         </h1>
 
-        <div class="prose dark:prose-invert max-w-none space-y-10">
+        <div class="prose dark:prose-invert max-w-none space-y-8 prose-base">
             <!-- Personal Intro -->
             <section class="animate-fade-in-up">
-                <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-200">
+                <p class="text-base leading-relaxed text-gray-700 dark:text-gray-200">
                     你好，我是<strong class="text-primary-500 mx-1">秋兰以为佩</strong>。
                 </p>
-                <div class="pl-4 border-l-4 border-gray-200 dark:border-gray-700 my-6 italic text-gray-600 dark:text-gray-400">
+                <div class="pl-4 border-l-4 border-gray-200 dark:border-gray-700 my-4 italic text-sm text-gray-600 dark:text-gray-400">
                     “扈江离与辟芷兮，纫秋兰以为佩。”
                 </div>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
                     在这个充满算法与数据的世界里，我是一个试图寻找某种平衡的开发者。我不只是代码的搬运工，更是逻辑构建的爱好者。
                     我相信代码如诗，好的架构应当像优美的韵律一样，简洁而有力。
                 </p>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mt-4">
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mt-3 text-sm">
                     平时喜欢折腾各种新技术，对计算机领域保持着强烈的好奇心。闲暇之余，也爱读书、发呆，或者在城市的某个角落观察生活。
                     这个博客，就是我的一方小天地，用来存放那些不想被时间冲刷掉的思考与足迹。
                 </p>
@@ -34,15 +34,15 @@ import { Icon } from 'astro-icon/components';
 
             <!-- About Site -->
             <section class="animate-fade-in-up" style="animation-delay: 100ms">
-                <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
                     <Icon name="ri:macbook-line" class="text-primary-500" />
                     关于本站
                 </h2>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
                     这里没有繁杂的广告，也没有眼花缭乱的特效（除了必要的审美坚持）。
                     我希望它是一个纯粹的阅读空间，一个可以让你静下心来读点东西的地方。
                 </p>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mt-2">
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mt-2 text-sm">
                     本站基于 <a href="https://astro.build" target="_blank" class="text-primary-500 hover:underline decoration-dashed underline-offset-4">Astro</a> 构建，
                     设计上追求“如无必要，勿增实体”的极简主义，同时保留了深色模式等现代化的阅读体验。
                     所有的文章都是我真实的踩坑记录或思考感悟，如果能对你有一点点帮助，那便是我最大的荣幸。
@@ -51,34 +51,34 @@ import { Icon } from 'astro-icon/components';
 
              <!-- Contact -->
             <section class="animate-fade-in-up" style="animation-delay: 200ms">
-                <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                     <Icon name="ri:chat-smile-2-line" class="text-primary-500" />
                     保持联系
                 </h2>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4 text-sm">
                     世界很大，相遇是缘。如果你对我的文章感兴趣，或者有任何技术问题想要探讨，亦或是单纯想交个朋友，欢迎随时联系我。
                 </p>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <a href="https://github.com/fuxuanyue520" target="_blank" 
-                       class="flex items-center gap-4 p-4 rounded-xl bg-gray-50 dark:bg-dark-700/50 hover:bg-gray-100 dark:hover:bg-dark-700 border border-gray-100 dark:border-white/5 transition-all group hover:scale-[1.02] hover:shadow-md">
-                        <div class="p-3 bg-white dark:bg-dark-600 rounded-full shadow-sm group-hover:rotate-12 transition-transform duration-300">
-                            <Icon name="ri:github-fill" class="text-2xl text-gray-800 dark:text-white" />
+                       class="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-dark-700/50 hover:bg-gray-100 dark:hover:bg-dark-700 border border-gray-100 dark:border-white/5 transition-all group hover:scale-[1.02] hover:shadow-md">
+                        <div class="p-2 bg-white dark:bg-dark-600 rounded-full shadow-sm group-hover:rotate-12 transition-transform duration-300">
+                            <Icon name="ri:github-fill" class="text-xl text-gray-800 dark:text-white" />
                         </div>
                         <div>
-                            <div class="text-sm text-gray-500 dark:text-gray-400 mb-0.5">GitHub</div>
-                            <div class="font-medium text-gray-900 dark:text-white group-hover:text-primary-500 transition-colors">fuxuanyue520</div>
+                            <div class="text-xs text-gray-500 dark:text-gray-400 mb-0.5">GitHub</div>
+                            <div class="font-medium text-sm text-gray-900 dark:text-white group-hover:text-primary-500 transition-colors">fuxuanyue520</div>
                         </div>
                     </a>
 
                     <a href="mailto:2417275843@qq.com" 
-                       class="flex items-center gap-4 p-4 rounded-xl bg-gray-50 dark:bg-dark-700/50 hover:bg-gray-100 dark:hover:bg-dark-700 border border-gray-100 dark:border-white/5 transition-all group hover:scale-[1.02] hover:shadow-md">
-                        <div class="p-3 bg-white dark:bg-dark-600 rounded-full shadow-sm group-hover:-rotate-12 transition-transform duration-300">
-                            <Icon name="ri:mail-send-fill" class="text-2xl text-primary-500" />
+                       class="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-dark-700/50 hover:bg-gray-100 dark:hover:bg-dark-700 border border-gray-100 dark:border-white/5 transition-all group hover:scale-[1.02] hover:shadow-md">
+                        <div class="p-2 bg-white dark:bg-dark-600 rounded-full shadow-sm group-hover:-rotate-12 transition-transform duration-300">
+                            <Icon name="ri:mail-send-fill" class="text-xl text-primary-500" />
                         </div>
                         <div>
-                            <div class="text-sm text-gray-500 dark:text-gray-400 mb-0.5">Email</div>
-                            <div class="font-medium text-gray-900 dark:text-white group-hover:text-primary-500 transition-colors">2417275843@qq.com</div>
+                            <div class="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Email</div>
+                            <div class="font-medium text-sm text-gray-900 dark:text-white group-hover:text-primary-500 transition-colors">2417275843@qq.com</div>
                         </div>
                     </a>
                 </div>
