@@ -14,7 +14,7 @@ import { Icon } from 'astro-icon/components';
           <span class="text-xl font-bold text-gray-100 group-hover:text-primary-500 transition-colors tracking-wide">秋兰以为佩</span>
         </a>
 
-        <!-- Menu (Left Aligned) -->
+        <!-- Desktop Menu (Left Aligned) -->
         <div class="hidden md:flex items-center gap-8">
           <a href="/" class="text-base font-medium text-gray-300 hover:text-primary-400 transition-colors flex items-center gap-2 relative group">
             <Icon name="ri:home-4-line" class="text-xl" />
@@ -34,9 +34,86 @@ import { Icon } from 'astro-icon/components';
         </div>
     </div>
 
-    <!-- Right Actions -->
-    <div class="flex items-center gap-4">
-      <!-- Theme toggle removed -->
-    </div>
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-primary-500 focus:outline-none p-2">
+      <Icon name="ri:menu-4-line" class="text-2xl" id="menu-icon-open" />
+      <Icon name="ri:close-line" class="text-2xl hidden" id="menu-icon-close" />
+    </button>
+  </div>
+
+  <!-- Mobile Menu Dropdown -->
+  <div id="mobile-menu" class="fixed top-20 left-0 w-full bg-dark-900/95 backdrop-blur-xl border-b border-white/5 shadow-2xl transform -translate-y-[150%] transition-transform duration-300 md:hidden flex flex-col items-center py-6 gap-6 z-40">
+      <a href="/" class="text-lg font-medium text-gray-300 hover:text-primary-400 transition-colors flex items-center gap-3 w-full justify-center py-2 active:bg-white/5">
+        <Icon name="ri:home-4-line" class="text-xl" />
+        <span>主页</span>
+      </a>
+      <a href="/archive" class="text-lg font-medium text-gray-300 hover:text-primary-400 transition-colors flex items-center gap-3 w-full justify-center py-2 active:bg-white/5">
+        <Icon name="ri:archive-line" class="text-xl" />
+        <span>归档</span>
+      </a>
+      <a href="/about" class="text-lg font-medium text-gray-300 hover:text-primary-400 transition-colors flex items-center gap-3 w-full justify-center py-2 active:bg-white/5">
+        <Icon name="ri:user-smile-line" class="text-xl" />
+        <span>关于</span>
+      </a>
   </div>
 </nav>
+
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIconOpen = document.getElementById('menu-icon-open');
+  const menuIconClose = document.getElementById('menu-icon-close');
+  let isMenuOpen = false;
+
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+    if (isMenuOpen) {
+      mobileMenu?.classList.remove('-translate-y-[150%]');
+      menuIconOpen?.classList.add('hidden');
+      menuIconClose?.classList.remove('hidden');
+    } else {
+      mobileMenu?.classList.add('-translate-y-[150%]');
+      menuIconOpen?.classList.remove('hidden');
+      menuIconClose?.classList.add('hidden');
+    }
+  }
+
+  menuBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (isMenuOpen && !mobileMenu?.contains(e.target as Node) && !menuBtn?.contains(e.target as Node)) {
+      toggleMenu();
+    }
+  });
+
+  // Close menu on navigation (View Transitions)
+  document.addEventListener('astro:after-swap', () => {
+    isMenuOpen = true; // Set to true so toggleMenu flips it to false
+    toggleMenu();
+    
+    // Re-attach event listeners after swap because DOM is replaced
+    const newMenuBtn = document.getElementById('mobile-menu-btn');
+    newMenuBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      // Re-query elements as they are new
+      const newMobileMenu = document.getElementById('mobile-menu');
+      const newIconOpen = document.getElementById('menu-icon-open');
+      const newIconClose = document.getElementById('menu-icon-close');
+      
+      // Simple toggle logic for re-attached listener
+      if (newMobileMenu?.classList.contains('-translate-y-[150%]')) {
+         newMobileMenu.classList.remove('-translate-y-[150%]');
+         newIconOpen?.classList.add('hidden');
+         newIconClose?.classList.remove('hidden');
+      } else {
+         newMobileMenu?.classList.add('-translate-y-[150%]');
+         newIconOpen?.classList.remove('hidden');
+         newIconClose?.classList.add('hidden');
+      }
+    });
+  });
+</script>

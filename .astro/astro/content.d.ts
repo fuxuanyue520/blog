@@ -158,37 +158,9 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
-"digital-minimalism.md": {
-	id: "digital-minimalism.md";
-  slug: "digital-minimalism";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"docker-intro.md": {
-	id: "docker-intro.md";
-  slug: "docker-intro";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"hackers-and-painters.md": {
-	id: "hackers-and-painters.md";
-  slug: "hackers-and-painters";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
 "midnight-coding.md": {
 	id: "midnight-coding.md";
   slug: "midnight-coding";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"nodejs-performance.md": {
-	id: "nodejs-performance.md";
-  slug: "nodejs-performance";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">
