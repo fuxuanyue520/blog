@@ -32,8 +32,8 @@ const wordCount = getWordCount(post.body);
   <div class="max-w-4xl mx-auto">
     <!-- Article Header -->
     <div class="mb-4 text-center">
-        <h1 class="text-xl md:text-2xl font-bold text-white mb-2 leading-tight">{title}</h1>
-        <div class="flex items-center justify-center gap-4 text-xs text-gray-400">
+        <h1 class="text-xl md:text-2xl lg:text-4xl font-bold text-white mb-2 leading-tight">{title}</h1>
+        <div class="flex items-center justify-center gap-4 text-xs lg:text-sm text-gray-400">
             <span class="flex items-center gap-1">
                 <Icon name="ri:calendar-line" />
                 {formatDate(publishedAt)}
@@ -50,7 +50,7 @@ const wordCount = getWordCount(post.body);
     </div>
 
     {coverImage && (
-        <div class="w-full h-[180px] md:h-[260px] rounded-xl overflow-hidden mb-6 shadow-2xl">
+        <div class="w-full h-[180px] md:h-[260px] lg:h-[400px] rounded-xl overflow-hidden mb-6 shadow-2xl">
             <img src={coverImage} alt={title} class="w-full h-full object-cover" />
         </div>
     )}
@@ -71,7 +71,7 @@ const wordCount = getWordCount(post.body);
     </div>
 
     <!-- Content -->
-    <article class="prose prose-invert prose-base max-w-none 
+    <article class="prose prose-invert prose-base lg:prose-lg max-w-none 
         prose-headings:text-white prose-headings:font-bold prose-headings:scroll-mt-24
         prose-p:text-gray-300 prose-p:leading-relaxed
         prose-a:text-primary-400 prose-a:no-underline hover:prose-a:underline
@@ -79,7 +79,7 @@ const wordCount = getWordCount(post.body);
         prose-code:text-primary-300 prose-code:bg-dark-800 prose-code:px-1 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
         prose-pre:bg-dark-800 prose-pre:border prose-pre:border-white/5 prose-pre:shadow-lg
         prose-img:rounded-xl prose-img:shadow-lg
-        bg-dark-800/50 p-5 rounded-2xl border border-white/5 backdrop-blur-sm
+        bg-dark-800/50 p-5 lg:p-8 rounded-2xl border border-white/5 backdrop-blur-sm
     ">
         <Content components={{ GithubCard }} />
     </article>
