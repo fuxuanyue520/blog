@@ -11,7 +11,7 @@ import { Icon } from 'astro-icon/components';
           <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full overflow-hidden border-2 border-primary-500/50 group-hover:border-primary-500 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all duration-300">
             <img src="/avatar.jpg" alt="Logo" class="w-full h-full object-cover" />
           </div>
-          <span class="text-xl lg:text-2xl font-bold text-gray-100 group-hover:text-primary-500 transition-colors tracking-wide">秋兰以为佩</span>
+          <span class="text-xl lg:text-2xl font-serif font-bold text-gray-100 group-hover:text-primary-500 transition-colors tracking-wide">秋兰以为佩</span>
         </a>
 
         <!-- Desktop Menu (Left Aligned) -->
@@ -34,11 +34,33 @@ import { Icon } from 'astro-icon/components';
         </div>
     </div>
 
-    <!-- Mobile Menu Button -->
-    <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-primary-500 focus:outline-none p-1">
-      <Icon name="ri:menu-4-line" class="text-2xl" id="menu-icon-open" />
-      <Icon name="ri:close-line" class="text-2xl hidden" id="menu-icon-close" />
-    </button>
+    <!-- Right Actions -->
+    <div class="flex items-center gap-4">
+      <!-- Wallpaper Toggle Button (Only visible on non-post pages) -->
+      {
+        !Astro.url.pathname.startsWith('/posts/') && (
+          <button id="wallpaper-toggle" class="relative group flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/5 transition-all duration-300" aria-label="切换模式">
+            <div class="relative w-6 h-6 flex items-center justify-center">
+               <!-- Icon for Normal Mode (Click to enter Wallpaper Mode) - Shows "Landscape/View" -->
+               <Icon name="ri:landscape-line" id="icon-normal" class="absolute inset-0 w-full h-full text-gray-400 group-hover:text-primary-400 transition-all duration-300 transform scale-100 opacity-100" />
+               <!-- Icon for Wallpaper Mode (Click to exit Wallpaper Mode) - Shows "Article/Content" -->
+               <Icon name="ri:article-line" id="icon-wallpaper" class="absolute inset-0 w-full h-full text-primary-500 transition-all duration-300 transform scale-0 opacity-0" />
+            </div>
+            
+            <!-- Tooltip -->
+            <span id="wallpaper-tooltip" class="absolute top-full mt-2 right-0 bg-dark-800 border border-white/10 text-gray-200 text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap shadow-xl backdrop-blur-md z-50">
+              进入沉浸模式
+            </span>
+          </button>
+        )
+      }
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-primary-500 focus:outline-none p-1">
+        <Icon name="ri:menu-4-line" class="text-2xl" id="menu-icon-open" />
+        <Icon name="ri:close-line" class="text-2xl hidden" id="menu-icon-close" />
+      </button>
+    </div>
   </div>
 
   <!-- Mobile Menu Dropdown -->
@@ -59,61 +81,88 @@ import { Icon } from 'astro-icon/components';
 </nav>
 
 <script>
-  const menuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const menuIconOpen = document.getElementById('menu-icon-open');
-  const menuIconClose = document.getElementById('menu-icon-close');
-  let isMenuOpen = false;
+  // Runs on initial load and after every navigation
+  document.addEventListener('astro:page-load', () => {
+    // Mobile Menu Logic
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+    let isMenuOpen = false;
 
-  function toggleMenu() {
-    isMenuOpen = !isMenuOpen;
-    if (isMenuOpen) {
-      mobileMenu?.classList.remove('-translate-y-[150%]');
-      menuIconOpen?.classList.add('hidden');
-      menuIconClose?.classList.remove('hidden');
-    } else {
-      mobileMenu?.classList.add('-translate-y-[150%]');
-      menuIconOpen?.classList.remove('hidden');
-      menuIconClose?.classList.add('hidden');
-    }
-  }
+    if (menuBtn && mobileMenu && menuIconOpen && menuIconClose) {
+      // Reset state on page load
+      isMenuOpen = false;
+      mobileMenu.classList.add('-translate-y-[150%]');
+      menuIconOpen.classList.remove('hidden');
+      menuIconClose.classList.add('hidden');
 
-  menuBtn?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleMenu();
-  });
-
-  // Close menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (isMenuOpen && !mobileMenu?.contains(e.target as Node) && !menuBtn?.contains(e.target as Node)) {
-      toggleMenu();
-    }
-  });
-
-  // Close menu on navigation (View Transitions)
-  document.addEventListener('astro:after-swap', () => {
-    isMenuOpen = true; // Set to true so toggleMenu flips it to false
-    toggleMenu();
-    
-    // Re-attach event listeners after swap because DOM is replaced
-    const newMenuBtn = document.getElementById('mobile-menu-btn');
-    newMenuBtn?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      // Re-query elements as they are new
-      const newMobileMenu = document.getElementById('mobile-menu');
-      const newIconOpen = document.getElementById('menu-icon-open');
-      const newIconClose = document.getElementById('menu-icon-close');
+      // Remove any existing listeners to prevent duplicates if elements were cached but script reruns
+      // (Though with astro:page-load we usually get fresh elements or need to re-attach)
+      const toggleMenu = () => {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+          mobileMenu.classList.remove('-translate-y-[150%]');
+          menuIconOpen.classList.add('hidden');
+          menuIconClose.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('-translate-y-[150%]');
+          menuIconOpen.classList.remove('hidden');
+          menuIconClose.classList.add('hidden');
+        }
+      };
       
-      // Simple toggle logic for re-attached listener
-      if (newMobileMenu?.classList.contains('-translate-y-[150%]')) {
-         newMobileMenu.classList.remove('-translate-y-[150%]');
-         newIconOpen?.classList.add('hidden');
-         newIconClose?.classList.remove('hidden');
-      } else {
-         newMobileMenu?.classList.add('-translate-y-[150%]');
-         newIconOpen?.classList.remove('hidden');
-         newIconClose?.classList.add('hidden');
-      }
-    });
+      // Clean up old listener if we attach to a persisting element (nav persists)
+      // But button is inside nav...
+      menuBtn.onclick = toggleMenu; // Simple override
+    }
+
+    // Wallpaper Toggle Logic
+    const wallpaperBtn = document.getElementById('wallpaper-toggle');
+    const iconNormal = document.getElementById('icon-normal');
+    const iconWallpaper = document.getElementById('icon-wallpaper');
+    const tooltip = document.getElementById('wallpaper-tooltip');
+    
+    if (wallpaperBtn && iconNormal && iconWallpaper) {
+      
+      const updateIconState = () => {
+        const isWallpaperMode = document.body.classList.contains('wallpaper-mode');
+        if (isWallpaperMode) {
+          // Show Wallpaper Icon (Active state - Click to exit)
+          iconNormal.classList.remove('scale-100', 'opacity-100');
+          iconNormal.classList.add('scale-0', 'opacity-0');
+          
+          iconWallpaper.classList.remove('scale-0', 'opacity-0');
+          iconWallpaper.classList.add('scale-100', 'opacity-100');
+          
+          // Update Tooltip
+          if (tooltip) tooltip.textContent = "退出沉浸模式";
+        } else {
+          // Show Normal Icon (Inactive state - Click to enter)
+          iconNormal.classList.remove('scale-0', 'opacity-0');
+          iconNormal.classList.add('scale-100', 'opacity-100');
+          
+          iconWallpaper.classList.remove('scale-100', 'opacity-100');
+          iconWallpaper.classList.add('scale-0', 'opacity-0');
+          
+          // Update Tooltip
+          if (tooltip) tooltip.textContent = "进入沉浸模式";
+        }
+      };
+
+      // Initial check
+      updateIconState();
+
+      // Click Handler
+      wallpaperBtn.onclick = () => {
+        document.dispatchEvent(new CustomEvent('toggle-wallpaper'));
+      };
+
+      // Observe Body Class Changes to update icon sync
+      const observer = new MutationObserver(() => {
+        updateIconState();
+      });
+      observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    }
   });
 </script>

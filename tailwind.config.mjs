@@ -27,7 +27,8 @@ export default {
 				},
 			},
 			fontFamily: {
-				sans: ["Inter", "sans-serif"],
+				sans: ["Inter", "Noto Sans SC", "sans-serif"],
+				serif: ["Noto Serif SC", "serif"],
 				mono: ["JetBrains Mono", "monospace"],
 			},
 			boxShadow: {

@@ -1,56 +1,24 @@
 ---
 ---
 
-<div class="relative w-full h-[30vh] md:h-[45vh] min-h-[250px] md:min-h-[350px] max-h-[500px] overflow-hidden mt-16 lg:mt-20 group" transition:persist>
+<div class="relative w-full h-[40vh] md:h-[60vh] min-h-[300px] md:min-h-[400px] overflow-hidden mt-16 lg:mt-20 group" transition:persist>
     <!-- Background Image -->
     <div id="banner-bg" class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" 
-         style="background-image: url('https://images.unsplash.com/photo-1477346611705-65d1883cee1e?q=80&w=2070&auto=format&fit=crop');">
+         style="background-image: url('https://youke2.picui.cn/s1/2025/12/22/6948fda357ffb.jpg');">
         <!-- Overlay -->
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-dark-900/10 to-dark-900"></div>
     </div>
     
     <!-- Content -->
-    <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-dark-900 via-dark-900/50 to-transparent pt-32">
-        <div class="max-w-[1600px] mx-auto">
-             <h1 class="text-5xl md:text-6xl font-bold text-white mb-2 drop-shadow-lg tracking-tight">
+    <div class="absolute bottom-0 left-0 w-full p-6 md:p-10 bg-gradient-to-t from-dark-900 via-dark-900/60 to-transparent pt-24">
+        <div class="max-w-[1600px] mx-auto flex flex-col justify-end h-full">
+             <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-2 drop-shadow-xl tracking-wide opacity-0 translate-y-4 animate-fade-in-up">
                 在学习与迷茫之间
              </h1>
-             <p class="text-gray-300 text-xl lg:text-2xl font-light tracking-wide flex items-center gap-2">
-                <span class="w-8 h-[1px] bg-primary-400 inline-block"></span>
+             <p class="text-gray-200 text-base md:text-lg font-light tracking-wider flex items-center gap-3 opacity-0 translate-y-4 animate-fade-in-up stagger-2">
+                <span class="w-6 h-[1px] bg-primary-400 inline-block"></span>
                 探索 · 记录 · 沉淀
              </p>
         </div>
     </div>
 </div>
-
-<script>
-    const bannerImages = [
-        'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=85&w=3840&auto=format&fit=crop', // Yosemite Valley (Mountain/Water)
-        'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=85&w=3840&auto=format&fit=crop', // Foggy Mountains
-        'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=85&w=3840&auto=format&fit=crop', // Majestic Mountains
-        'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=85&w=3840&auto=format&fit=crop', // Lake & Mountains
-        'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?q=85&w=3840&auto=format&fit=crop', // Wide Landscape
-        'https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?q=85&w=3840&auto=format&fit=crop', // Mountain Range
-        'https://images.unsplash.com/photo-1505765050516-f72dcac9c60e?q=85&w=3840&auto=format&fit=crop', // Nature & Water
-        'https://images.unsplash.com/photo-1519681393798-3828fb4090bb?q=85&w=3840&auto=format&fit=crop', // Night Mountain Silhouette
-        'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=85&w=3840&auto=format&fit=crop', // Green Nature
-        'https://images.unsplash.com/photo-1502472584811-0a2f2ca8f9cf?q=85&w=3840&auto=format&fit=crop', // Moody Mountain
-        'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=85&w=3840&auto=format&fit=crop', // Alpine
-        'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=85&w=3840&auto=format&fit=crop', // Sunset Field
-        'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=85&w=3840&auto=format&fit=crop', // Lake District
-    ];
-
-    function setRandomBanner() {
-        const bannerBg = document.getElementById('banner-bg');
-        if (bannerBg) {
-            const randomIndex = Math.floor(Math.random() * bannerImages.length);
-            bannerBg.style.backgroundImage = `url('${bannerImages[randomIndex]}')`;
-        }
-    }
-
-    // Run on initial load
-    setRandomBanner();
-
-    // Run on view transitions
-    document.addEventListener('astro:page-load', setRandomBanner);
-</script>

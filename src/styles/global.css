@@ -31,8 +31,53 @@
 	}
 }
 
+@keyframes slideInRight {
+	from {
+		opacity: 0;
+		transform: translateX(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideInLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes scaleIn {
+	from {
+		opacity: 0;
+		transform: scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
 .animate-fade-in-up {
 	animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+	animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+	animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+	animation: scaleIn 0.5s ease-out forwards;
 }
 
 /* Staggered animation delays for children */
@@ -47,6 +92,19 @@
 }
 .stagger-4 {
 	animation-delay: 400ms;
+}
+.stagger-5 {
+	animation-delay: 500ms;
+}
+
+/* Hover Animations */
+.hover-lift {
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+		0 8px 10px -6px rgba(0, 0, 0, 0.1);
 }
 
 /* Custom Admonitions Styles */

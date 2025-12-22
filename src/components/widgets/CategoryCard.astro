@@ -34,8 +34,8 @@ const categoryIconMap: Record<string, string> = {
   </div>
   
   <div class="flex flex-col gap-1 lg:gap-2">
-    {Object.entries(categoryCount).map(([slug, count]) => (
-      <a href={`/category/${slug}`} class="flex items-center justify-between p-1.5 lg:p-2 rounded-lg hover:bg-dark-700 transition-colors group/item">
+    {Object.entries(categoryCount).map(([slug, count], index) => (
+      <a href={`/category/${slug}`} class="flex items-center justify-between p-1.5 lg:p-2 rounded-lg hover:bg-dark-700 transition-colors group/item animate-slide-in-right opacity-0" style={`animation-delay: ${(index + 1) * 100}ms`}>
         <span class="text-gray-300 text-sm lg:text-base group-hover/item:text-primary-400 transition-colors flex items-center gap-2">
             <Icon name={categoryIconMap[slug] || 'ri:folder-line'} class="text-primary-500" />
             {categoryMap[slug] || slug}

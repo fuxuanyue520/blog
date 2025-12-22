@@ -4,10 +4,16 @@ import ArticleCard from '../components/ArticleCard.astro';
 import Pagination from '../components/Pagination.astro';
 import { getAllArticles } from '../utils/markdown';
 import { Icon } from 'astro-icon/components';
+import type { GetStaticPaths, Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 
-export async function getStaticPaths({ paginate }: { paginate: any }) {
+export const getStaticPaths = (async ({ paginate }) => {
   const posts = await getAllArticles();
   return paginate(posts, { pageSize: 5 });
+}) satisfies GetStaticPaths;
+
+interface Props {
+  page: Page<CollectionEntry<'posts'>>;
 }
 
 const { page } = Astro.props;
@@ -25,8 +31,10 @@ const { page } = Astro.props;
     </div>
 
     <div class="space-y-4">
-        {page.data.map((post: any) => (
-            <ArticleCard article={post} />
+        {page.data.map((post: any, index: number) => (
+            <div class="animate-fade-in-up opacity-0" style={`animation-delay: ${index * 150}ms`}>
+                <ArticleCard article={post} />
+            </div>
         ))}
     </div>
     

@@ -24,22 +24,30 @@ const { title, description = "秋兰以为佩的博客 - 技术与思考", showB
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
     <ViewTransitions />
   </head>
   <body class="bg-dark-900 text-gray-200 min-h-screen flex flex-col font-sans selection:bg-primary-500/30 selection:text-primary-200 transition-colors duration-300">
     
+    <!-- Full Page Background Image -->
+    <div id="full-page-bg" class="fixed inset-0 z-[-2] bg-cover bg-center bg-no-repeat transition-opacity duration-500 opacity-0 pointer-events-none" 
+         style="background-image: url('https://youke2.picui.cn/s1/2025/12/22/6948fda357ffb.jpg');">
+        <div class="absolute inset-0 bg-dark-900/70 backdrop-blur-[2px]"></div>
+    </div>
+
     <!-- Background Elements -->
-    <div class="fixed inset-0 z-[-1] pointer-events-none">
+    <div id="background-blobs" class="fixed inset-0 z-[-1] pointer-events-none transition-opacity duration-500">
         <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary-900/10 blur-[100px] animate-pulse-slow"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-secondary-900/10 blur-[100px] animate-pulse-slow" style="animation-delay: 2s"></div>
     </div>
 
     <Navbar />
     
-    {showBanner && <Banner />}
+    <div id="banner-container" class="transition-all duration-700 ease-in-out overflow-hidden origin-top">
+      {showBanner && <Banner />}
+    </div>
     
-    <main class={`flex-1 w-full max-w-[1600px] mx-auto px-4 md:px-6 lg:px-8 py-8 ${!showBanner ? 'mt-16 lg:mt-20' : ''}`} transition:animate="fade">
+    <main id="main-content" class={`flex-1 w-full max-w-[1600px] mx-auto px-4 md:px-6 lg:px-8 py-8 transition-all duration-700 ease-in-out ${!showBanner ? 'mt-16 lg:mt-20' : ''}`} transition:animate="fade">
       <slot />
     </main>
 
@@ -73,11 +81,105 @@ const { title, description = "秋兰以为佩的博客 - 技术与思考", showB
         });
       }
 
+      // Initialize Wallpaper Mode
+      function initWallpaperMode() {
+        const isWallpaperMode = localStorage.getItem('wallpaper-mode') === 'true';
+        if (isWallpaperMode) {
+          document.body.classList.add('wallpaper-mode');
+        } else {
+          document.body.classList.remove('wallpaper-mode');
+        }
+      }
+
       // Run on initial load
       handleExternalLinks();
+      initWallpaperMode();
 
       // Run on view transitions navigation
-      document.addEventListener('astro:page-load', handleExternalLinks);
+      document.addEventListener('astro:page-load', () => {
+        handleExternalLinks();
+        initWallpaperMode();
+      });
+      
+      // Listen for toggle event from Navbar - Singleton pattern
+      if (!window._wallpaperListenerAttached) {
+        document.addEventListener('toggle-wallpaper', () => {
+          const isWallpaperMode = document.body.classList.toggle('wallpaper-mode');
+          localStorage.setItem('wallpaper-mode', String(isWallpaperMode));
+        });
+        window._wallpaperListenerAttached = true;
+      }
     </script>
+
+    <style is:global>
+      /* Wallpaper Mode Styles */
+      body.wallpaper-mode {
+        background-color: transparent !important;
+      }
+      body.wallpaper-mode #full-page-bg {
+        opacity: 1 !important;
+      }
+      body.wallpaper-mode #background-blobs {
+        opacity: 0;
+      }
+      body.wallpaper-mode #banner-container {
+        opacity: 0;
+        height: 0;
+        transform: translateY(-20px);
+      }
+      body.wallpaper-mode #main-content {
+        margin-top: 5rem; /* h-20 equivalent */
+      }
+      @media (min-width: 1024px) {
+        body.wallpaper-mode #main-content {
+          margin-top: 6rem; /* h-24 equivalent */
+        }
+      }
+
+      /* Component Transparency in Wallpaper Mode */
+      body.wallpaper-mode nav {
+        background-color: rgba(17, 24, 39, 0.6) !important; /* dark-900/60 */
+        backdrop-filter: blur(12px);
+      }
+      
+      body.wallpaper-mode .bg-dark-800,
+      body.wallpaper-mode .bg-dark-900,
+      body.wallpaper-mode .bg-gray-100, 
+      body.wallpaper-mode .dark\:bg-dark-950,
+      body.wallpaper-mode .dark\:bg-dark-800,
+      body.wallpaper-mode nav.toc-container h2 {
+        background-color: rgba(30, 41, 59, 0.5) !important; /* dark-800/50 approx */
+        backdrop-filter: blur(8px);
+        border-color: rgba(255, 255, 255, 0.1) !important;
+      }
+      
+      /* Specific Transparency for Pagination Buttons */
+      body.wallpaper-mode .bg-dark-800\/50 {
+         background-color: rgba(30, 41, 59, 0.3) !important;
+         backdrop-filter: blur(4px);
+      }
+      
+      body.wallpaper-mode nav[aria-label="Pagination"] {
+         background-color: rgba(30, 41, 59, 0.5) !important; /* Container transparency */
+         backdrop-filter: blur(8px);
+         border-color: rgba(255, 255, 255, 0.1) !important;
+      }
+
+      body.wallpaper-mode nav[aria-label="Pagination"] a,
+      body.wallpaper-mode nav[aria-label="Pagination"] button,
+      body.wallpaper-mode nav[aria-label="Pagination"] span.text-gray-500 {
+         background-color: rgba(30, 41, 59, 0.3) !important; /* Inner buttons slightly more transparent */
+         backdrop-filter: blur(4px);
+         border-color: rgba(255, 255, 255, 0.1) !important;
+      }
+      
+      body.wallpaper-mode nav[aria-label="Pagination"] a.bg-primary-500 {
+         background-color: rgba(6, 182, 212, 0.8) !important; /* Primary color transparent */
+      }
+
+      body.wallpaper-mode .card-gradient {
+        background: linear-gradient(to bottom right, rgba(30, 41, 59, 0.6), rgba(30, 41, 59, 0.4)) !important;
+      }
+    </style>
   </body>
 </html>

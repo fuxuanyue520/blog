@@ -50,14 +50,14 @@ const getPageNumbers = () => {
 const pageNumbers = getPageNumbers();
 ---
 
-<nav class="mt-12 flex justify-center items-center gap-2" aria-label="Pagination">
+<nav class="mt-8 bg-dark-800 rounded-xl p-4 border border-white/5 shadow-lg flex justify-center items-center gap-2 transition-colors duration-300 hover:border-primary-500/30" aria-label="Pagination">
   <!-- Previous Button -->
   {prevUrl ? (
-    <a href={prevUrl} class="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-lg bg-dark-800 text-gray-400 hover:text-primary-400 hover:bg-dark-700 transition-colors border border-white/5" aria-label="Previous Page">
+    <a href={prevUrl} class="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-lg bg-dark-700 text-gray-400 hover:text-primary-400 hover:bg-dark-600 transition-colors border border-white/5" aria-label="Previous Page">
       <Icon name="ri:arrow-left-s-line" class="text-xl lg:text-2xl" />
     </a>
   ) : (
-    <button disabled class="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-lg bg-dark-800/50 text-gray-600 cursor-not-allowed border border-white/5" aria-hidden="true">
+    <button disabled class="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-lg bg-dark-700/50 text-gray-600 cursor-not-allowed border border-white/5" aria-hidden="true">
       <Icon name="ri:arrow-left-s-line" class="text-xl lg:text-2xl" />
     </button>
   )}
@@ -73,7 +73,7 @@ const pageNumbers = getPageNumbers();
           class={`w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-lg border transition-all duration-300 font-medium text-base lg:text-lg ${
             currentPage === num 
               ? 'bg-primary-500 border-primary-500 text-white shadow-[0_0_15px_rgba(6,182,212,0.4)]' 
-              : 'bg-dark-800 border-white/5 text-gray-400 hover:text-primary-400 hover:bg-dark-700 hover:border-primary-500/30'
+              : 'bg-dark-700 border-white/5 text-gray-400 hover:text-primary-400 hover:bg-dark-600 hover:border-primary-500/30'
           }`}
           aria-current={currentPage === num ? 'page' : undefined}
         >
@@ -90,11 +90,11 @@ const pageNumbers = getPageNumbers();
 
   <!-- Next Button -->
   {nextUrl ? (
-    <a href={nextUrl} class="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-lg bg-dark-800 text-gray-400 hover:text-primary-400 hover:bg-dark-700 transition-colors border border-white/5" aria-label="Next Page">
+    <a href={nextUrl} class="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-lg bg-dark-700 text-gray-400 hover:text-primary-400 hover:bg-dark-600 transition-colors border border-white/5" aria-label="Next Page">
       <Icon name="ri:arrow-right-s-line" class="text-xl lg:text-2xl" />
     </a>
   ) : (
-    <button disabled class="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-lg bg-dark-800/50 text-gray-600 cursor-not-allowed border border-white/5" aria-hidden="true">
+    <button disabled class="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-lg bg-dark-700/50 text-gray-600 cursor-not-allowed border border-white/5" aria-hidden="true">
       <Icon name="ri:arrow-right-s-line" class="text-xl lg:text-2xl" />
     </button>
   )}
